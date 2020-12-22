@@ -7,10 +7,12 @@
         <!--推荐-->
         <view class="recommend_warp">
             <view class="recommend_item"
-                v-for="i in recommends"
+                v-for="(i, index) in recommends"
                 :key="i.id"
             >
-            <image :src="i.thumb" mode="widthFix" ></image>
+            <go-detail :list="recommends" :index="index">
+                <image :src="i.thumb" mode="widthFix" ></image>
+            </go-detail>
             </view>
         </view>
         <!--月份-->
@@ -26,8 +28,10 @@
                 <view class="months_more">更多 ></view>
             </view>
             <view class="months_content">
-                <view class="months_item" v-for="i in monthes.items" :key="i.id">
-                    <image mode="aspectFill" :src="i.thumb + i.rule.replace('$<Height>', 360)"></image>
+                <view class="months_item" v-for="(i, index) in monthes.items" :key="i.id">
+                    <go-detail :list="monthes" :index="index">
+                        <image mode="aspectFill" :src="i.thumb + i.rule.replace('$<Height>', 360)"></image>
+                    </go-detail>
                 </view>
             </view>
         </view>
@@ -37,8 +41,10 @@
                 <text>热门</text>
             </view>
             <view class="hot_content">
-                <view class="content_item" v-for="i in hots" :key="i.id">
-                    <image mode="widthFix" :src="i.thumb"></image>
+                <view class="content_item" v-for="(i, index) in hots" :key="i.id">
+                    <go-detail :list="hots" :index="index">
+                        <image mode="widthFix" :src="i.thumb"></image>
+                    </go-detail>
                 </view>
             </view>
         </view>
@@ -46,7 +52,11 @@
 </template>
 <script>
 import moment from 'moment'
+import goDetail from '@/components/goDetail'
 export default {
+    components: {
+        goDetail
+    },
     data() {
         return {
             // 请求的数据

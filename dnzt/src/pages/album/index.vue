@@ -22,7 +22,7 @@
         <view class="album_list">
             <view
                 class="album_item"
-                v-for="(item,index) in wallpaper"
+                v-for="(item, index) in wallpaper"
                 :key="item.id"
             >
             <go-detail :list="wallpaper" :index="index">
@@ -30,7 +30,7 @@
                 mode="aspectFill"
                 :src="item.thumb+item.rule.replace('$<Height>',360)"
                 ></image>
-                </go-detail>
+            </go-detail>
             </view>
         </view>
     </view>
