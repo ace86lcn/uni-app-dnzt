@@ -17,12 +17,12 @@
                 indicator-dots
                 circular
             >
-                <view class="swiper_item"
-                    v-for="i in banner"
-                    :key="i.id"
+                <swiper-item class="swiper_item"
+                    v-for="item in banner"
+                    :key="item.id"
                 >
-                     <image :src="i.thumb"></image>   
-                </view>
+                     <image :src="item.thumb"></image>   
+                </swiper-item>
             </swiper>
         </view>
         <view class="album_warp">
@@ -72,8 +72,9 @@ export default {
                 data: this.params
             })
             .then((res) => {
-                if (res.res.banner.length === 0) {
+                if (this.banner.length === 0) {
                     this.banner = res.res.banner
+                    console.log(this.banner)
                 }
                 if (res.res.album.length === 0) {
                     this.hasMore = false
